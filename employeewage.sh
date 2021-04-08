@@ -6,6 +6,7 @@ FullTimeHr=8
 PartTimeHr=4
 SalaryPerHr=20
 totalSalary=0
+monthlySalary=0
 attendance=$((RANDOM%3))
 Attendance()
 {
@@ -19,12 +20,13 @@ Attendance()
 		echo "Employee is Part Timer"
 	fi
 }
-Attendance
 Salary()
 {
 	 if [ $attendance -eq $isFullTime ]
         then
                 totalSalary=$(($totalSalary+($SalaryPerHr*$FullTimeHr)))
+		monthlySalary=$(($totalSalary*20))
+		echo "Monthly Salary: $monthlySalary"
         elif [ $attendance -eq $isPartTime ]
         then
                 totalSalary=$(($totalSalary+($SalaryPerHr*$PartTimeHr)))
@@ -33,7 +35,21 @@ Salary()
         fi
 	echo "Salary is: $totalSalary"
 }
-Salary
+echo "WELCOME TO EMPLOYEE MANAGEMENT SYSTEM"
+echo "Enter Choice :"
+echo "1. Attendance"
+echo "2. Salary"
+echo "3. Exit"
+read ch
+case $ch in
+	1)Attendance
+	;;
+	2)Salary
+	;;
+	3)Exit
+	;;
+esac
+
 
 
 
